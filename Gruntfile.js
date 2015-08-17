@@ -365,7 +365,21 @@ module.exports = function(grunt) {
           cwd: '<%= yeoman.app %>/scripts/directives',
           dest: '<%= yeoman.dist %>/scripts',
           src: ['*']
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.app %>/views',
+          dest: '<%= yeoman.dist %>/views',
+          src: ['*']
         }]
+      },
+      original: {
+        expand: true,
+        cwd: '.tmp/concat/scripts',
+        dest: '<%= yeoman.dist %>/scripts/',
+        src: ['ng-password-strength.min.js'],
+        rename: function(dest, src) {
+          return dest + src.replace(/\.min\./, ".");
+        }
       },
       styles: {
         expand: true,
@@ -440,6 +454,7 @@ module.exports = function(grunt) {
     'cdnify',
     'cssmin',
     'uglify',
+	'copy:original',
     // 'filerev',
     'usemin',
     'htmlmin'

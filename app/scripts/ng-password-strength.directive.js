@@ -15,7 +15,9 @@
 
     function ngPasswordStrength(PasswordStrengthService) {
       return {
-        template: '<div class="progress {{valueClass.outter}}"><div class="{{valueClass.inner}} {{innerClass}}" role="progressbar" aria-valuenow="{{value}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width : ( value + \'%\' ) }"><span class="sr-only">{{value}}%</span></div></div>',
+        templateUrl: function(elem, attrs) {
+          return attrs.templateUrl;
+        },
         restrict: 'A',
         scope: {
           pwd: '=ngPasswordStrength',
